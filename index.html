@@ -48,27 +48,51 @@
             letter-spacing: 4.5px; 
         }
     </style>
+    .music-btn {
+    margin-top: 20px;
+    background: black;
+    color: red;
+    border: 2px solid red;
+    padding: 12px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px red;
+    transition: 0.3s;
+}
+
+.music-btn:hover {
+    background: red;
+    color: black;
+    box-shadow: 0 0 20px red;
+}
 </head>
 <body>
 
     <div class="image-container">
         <img src="https://cdn.discordapp.com/attachments/1434248600116002867/1458604373893451888/dsa.webp?ex=6964dbee&is=69638a6e&hm=da533baec68bec0f2fe03307c7dd8fc05c249bc220b3f1ed3175005eeca8aed4&" alt="Discord Image">
     </div>
+<audio id="bg-music" autoplay loop muted>
+    <source src="https://cdn.discordapp.com/attachments/1434248600116002867/1458606873073811746/zbJgRDWwZbA.mp3?ex=6964de42&is=69638cc2&hm=8d9dbb5ebc1c02c6064ca9911f9239c27faee66bd9f975322107faaacf88d01d&" type="audio/mpeg">
+</audio>
 
-    <audio autoplay loop>
-        <source src="https://cdn.discordapp.com/attachments/1434248600116002867/1458606873073811746/zbJgRDWwZbA.mp3?ex=6964de42&is=69638cc2&hm=8d9dbb5ebc1c02c6064ca9911f9239c27faee66bd9f975322107faaacf88d01d&" type="audio/mpeg">
-    </audio>
-
-    <div class="info" id="ip-info">
-       
+<script>
+window.onload = () => {
+    const audio = document.getElementById("bg-music");
+    audio.muted = false;
+    audio.play();
+};
+</script>
         
     </div>
-   <div class="text">Ghost Cfw</div>
-   <div class="text">discord.gg/g77</div>
-   <div class="text">discord.gg/g77</div>
-   <div class="text">ادخل سيرفر hard roleplay</div>
-
-
+   <div class="text">Ghost CFW</div>
+<div class="text">━━━━━━━━━━━━━━━━━━━━</div>
+<div class="text">discord.gg/g77</div>
+<div class="text">أفضل سيرفر Hard Roleplay</div>
+<div class="text">تجربة واقعية 100%</div>
+<div class="text">إدارة متفاعلة 24/7</div>
+<div class="text">وظائف حصرية</div>
+<div class="text">فعاليات يومية</div>
+<div class="text">━━━━━━━━━━━━━━━━━━━━</div>
     <script>
         fetch('https://ipinfo.io/json')
         .then(response => response.json())
