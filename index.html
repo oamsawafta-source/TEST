@@ -21,7 +21,7 @@
             cursor: crosshair;
         }
 
-        /* فيديو الخلفية */
+        /* فيديو الخلفية مع فلتر قوي */
         #bg-video {
             position: fixed;
             right: 0;
@@ -33,7 +33,7 @@
             filter: brightness(0.3) contrast(1.2) grayscale(0.5);
         }
 
-        /* حاوية المحتوى */
+        /* حاوية المحتوى مع حركة اهتزاز خفيفة */
         .content-wrapper {
             z-index: 1;
             animation: shake 0.5s infinite alternate;
@@ -61,6 +61,7 @@
             box-shadow: 0 0 60px #00ff00;
         }
 
+        /* نص "يهبّل" مع تأثير Glitch */
         .text {
             margin-top: 15px;
             font-size: 2.8em;
@@ -77,20 +78,52 @@
             text-shadow: 0 0 10px #00ff00;
         }
 
-        /* طبقة شفافة لتفعيل الصوت عند أول ضغطة في أي مكان */
-        #click-overlay {
+        /* زر التشغيل بشكل احترافي */
+        .music-btn {
+            margin-top: 30px;
+            background: transparent;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 15px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px #00ff00;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-btn:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 40px #00ff00;
+            transform: translateY(-5px);
+        }
+
+        /* طبقة حماية لبدء الصوت */
+        #overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
             z-index: 999;
-            background: rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #00ff00;
+            font-size: 2em;
+            cursor: pointer;
         }
     </style>
 </head>
-<body onclick="enableAudio()">
+<body>
 
-    <div id="click-overlay"></div>
+    <div id="overlay" onclick="startEverything()">
+        [ اظغط لدخول الى عالم ال هوملي  ]
+    </div>
 
-    <video muted loop id="bg-video" autoplay playsinline>
+    <video muted loop id="bg-video">
         <source src="https://cdn.discordapp.com/attachments/1434248600116002867/1466819885010260098/hisd.mp4?ex=697e21f8&is=697cd078&hm=3dab0bd78ccf4f3002bfe26664403008660e6dd9d098eb26b28ebcff61b20df3&" type="video/mp4">
     </video>
 
@@ -103,9 +136,10 @@
         <div class="divider">━━━━━━━━━━━━━━━━━━━━</div>
         <div class="text" style="font-size: 1.8em; color: #fff;">داعسكم مسوؤل الـ Homos</div>
         <div class="text" style="font-size: 1.5em;">مععععععمود اكلي ياها</div>
-        <div class="text" style="font-size: 1.5em;"> السعودية كلها عايبه اولها رئيسكم محمد بن سلمان  يلا يا مخانيث </div>
-        <div class="text" style="font-size: 1.5em;"> وبلختام معمود عمكمممم هوموووووووووووووو!!!!!! </div>
+        <div class="text" style="font-size: 1.5em;"> السعوديه كلها عايبه اولها رايئسكم يلا يا مخانيث    </div>
         <div class="divider">━━━━━━━━━━━━━━━━━━━━</div>
+        
+        <button class="music-btn" onclick="togglePlay()">Homo On Top</button>
     </div>
 
     <audio id="bg-music" loop>
@@ -114,19 +148,22 @@
 
     <script>
         const audio = document.getElementById("bg-music");
-        const overlay = document.getElementById("click-overlay");
+        const video = document.getElementById("bg-video");
+        const overlay = document.getElementById("overlay");
 
-        function enableAudio() {
+        function startEverything() {
+            overlay.style.display = "none"; // إخفاء واجهة الدخول
             audio.play();
-            overlay.style.display = "none"; // حذف الطبقة الشفافة بعد التشغيل
+            video.play();
         }
 
-        // محاولة التشغيل التلقائي (قد تفشل في بعض المتصفحات بدون ضغطة)
-        window.onload = function() {
-            audio.play().catch(() => {
-                console.log("التشغيل التلقائي محجوب، اضغط في أي مكان لتفعيل الصوت");
-            });
-        };
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
     </script>
 
 </body>
