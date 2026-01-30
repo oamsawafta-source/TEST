@@ -3,103 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>discord.gg/</title>
+    <title>HOMELY ON TOP</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #000000; /* BLACK BACKGROUND */
+            background: #000;
             font-family: 'Courier New', Courier, monospace;
-            color: #ff0000; /* RED TEXT */
+            color: #00ff00; /* أخضر نيون */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             flex-direction: column;
             text-align: center;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        /* فيديو الخلفية مع فلتر قوي */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.3) contrast(1.2) grayscale(0.5);
+        }
+
+        /* حاوية المحتوى مع حركة اهتزاز خفيفة */
+        .content-wrapper {
+            z-index: 1;
+            animation: shake 0.5s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -1px) rotate(1deg); }
         }
 
         .image-container img {
-            width: 750px; 
-            height: auto;
-            border: 2px solid #ff0000; 
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); 
+            width: 600px;
+            max-width: 85%;
+            border: 3px solid #00ff00;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #00ff00, inset 0 0 15px #00ff00;
+            transition: 0.5s;
         }
 
-        .info {
-            margin-top: 20px;
-            font-size: 1.5em;
-            color: #ff0000; 
-            text-shadow: 0px 0px 8px #ff0000,
-                         0px 0px 15px #ff0000,
-                         0px 0px 25px #ff0000; 
-            letter-spacing: 4.5px; 
-            white-space: pre-wrap;
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px #00ff00;
         }
 
+        /* نص "يهبّل" مع تأثير Glitch */
         .text {
-            margin-top: 20px;
-            font-size: 3em; 
-            color: #ff0000; 
-            text-shadow: 0px 0px 8px #ff0000,
-                         0px 0px 15px #ff0000,
-                         0px 0px 25px #ff0000; 
-            letter-spacing: 4.5px; 
+            margin-top: 15px;
+            font-size: 2.8em;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 3px 3px 0px #000, 0 0 20px #00ff00;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            color: #fff;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        /* زر التشغيل بشكل احترافي */
+        .music-btn {
+            margin-top: 30px;
+            background: transparent;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 15px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px #00ff00;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-btn:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 40px #00ff00;
+            transform: translateY(-5px);
+        }
+
+        /* طبقة حماية لبدء الصوت */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #00ff00;
+            font-size: 2em;
+            cursor: pointer;
         }
     </style>
-    .music-btn {
-    margin-top: 20px;
-    background: black;
-    color: red;
-    border: 2px solid red;
-    padding: 12px 30px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 0 10px red;
-    transition: 0.3s;
-}
-
-.music-btn:hover {
-    background: red;
-    color: black;
-    box-shadow: 0 0 20px red;
-}
 </head>
 <body>
 
-    <div class="image-container">
-        <img src="https://cdn.discordapp.com/attachments/1434248600116002867/1458604373893451888/dsa.webp?ex=6964dbee&is=69638a6e&hm=da533baec68bec0f2fe03307c7dd8fc05c249bc220b3f1ed3175005eeca8aed4&" alt="Discord Image">
+    <div id="overlay" onclick="startEverything()">
+        [ اظغط لدخول الى عالم ال هوملي  ]
     </div>
-<audio id="bg-music" autoplay loop muted>
-    <source src="https://cdn.discordapp.com/attachments/1434248600116002867/1458606873073811746/zbJgRDWwZbA.mp3?ex=6964de42&is=69638cc2&hm=8d9dbb5ebc1c02c6064ca9911f9239c27faee66bd9f975322107faaacf88d01d&" type="audio/mpeg">
-</audio>
 
-<script>
-window.onload = () => {
-    const audio = document.getElementById("bg-music");
-    audio.muted = false;
-    audio.play();
-};
-</script>
+    <video muted loop id="bg-video">
+        <source src="https://cdn.discordapp.com/attachments/1434248600116002867/1466819885010260098/hisd.mp4?ex=697e21f8&is=697cd078&hm=3dab0bd78ccf4f3002bfe26664403008660e6dd9d098eb26b28ebcff61b20df3&" type="video/mp4">
+    </video>
+
+    <div class="content-wrapper">
+        <div class="image-container">
+            <img src="https://cdn.discordapp.com/attachments/1434248600116002867/1458604373893451888/dsa.webp?ex=697de86e&is=697c96ee&hm=4ede062d7981bd6c935b6b60e3aa3b969a75c9c99dba6d73779636e703091b5c&" alt="Homo image">
+        </div>
+
+        <div class="text">Homo On Top</div>
+        <div class="divider">━━━━━━━━━━━━━━━━━━━━</div>
+        <div class="text" style="font-size: 1.8em; color: #fff;">داعسكم مسوؤل الـ Homos</div>
+        <div class="text" style="font-size: 1.5em;">مععععععمود اكلي ياها</div>
+        <div class="divider">━━━━━━━━━━━━━━━━━━━━</div>
         
+        <button class="music-btn" onclick="togglePlay()">Mute / Unmute</button>
     </div>
-   <div class="text">Ghost CFW</div>
-<div class="text">━━━━━━━━━━━━━━━━━━━━</div>
-<div class="text">discord.gg/g77</div>
-<div class="text">أفضل سيرفر Hard Roleplay</div>
-<div class="text">تجربة واقعية 100%</div>
-<div class="text">إدارة متفاعلة 24/7</div>
-<div class="text">وظائف حصرية</div>
-<div class="text">فعاليات يومية</div>
-<div class="text">━━━━━━━━━━━━━━━━━━━━</div>
-    <script>
-        fetch('https://ipinfo.io/json')
-        .then(response => response.json())
-        .then(data => {
 
-            
-        });
+    <audio id="bg-music" loop>
+        <source src="https://cdn.discordapp.com/attachments/1434248600116002867/1466819885010260098/hisd.mp4?ex=697e21f8&is=697cd078&hm=3dab0bd78ccf4f3002bfe26664403008660e6dd9d098eb26b28ebcff61b20df3&" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById("bg-music");
+        const video = document.getElementById("bg-video");
+        const overlay = document.getElementById("overlay");
+
+        function startEverything() {
+            overlay.style.display = "none"; // إخفاء واجهة الدخول
+            audio.play();
+            video.play();
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
     </script>
 
 </body>
